@@ -104,6 +104,41 @@ unless为true，方法返回结果不会丢到缓存中；unless为false，方�
 <td>sync</td>
 <td>是否同步 从相同key加载值 的方法</td>
 </tr>
+<tr>
+<td rowspan="9">@CacheEvict</td>
+<td rowspan="9">类或方法</td>
+<td rowspan="9">清理缓存</td>
+<td>value</td>
+<td>cache的名称</td>
+</tr>
+<tr>
+<td>cacheNames</td>
+<td>同value</td>
+</tr>
+<tr>
+<td>key</td>
+<td>key</td>
+</tr>
+<tr>
+<td>keyGenerator</td>
+<td>key生成策略</td>
+</tr>
+<tr>
+<td>cacheManager</td>
+<td>指定缓存控制器</td>
+</tr>
+<tr>
+<td>cacheResolver</td>
+<td>指定缓存解析器</td>
+</tr>
+<tr>
+<td>condition</td>
+<td>注解生效条件，同@CacheAble condition</td>
+</tr>
+<tr>
+<td>allEntries</td>
+<td>是否清理 cacheNames 指定的缓存中的所有缓存信息，默认是false， 可以将一个cache想象为一个HashMap，当 allEntries 为true的时候，相当于 HashMap.clear()，当 allEntries 为false的时候，只会干掉key对应的数据，相当于HashMap.remove(key)</td>
+</tr>
 </table>
 key属性支持SpEL表达式；当我们没有指定该属性时，Spring将使用默认策略生成
 key（org.springframework.cache.interceptor.SimpleKeyGenerator），默认会方法参数创建key。
