@@ -1,11 +1,13 @@
 package service;
 
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class UserService {
@@ -85,5 +87,10 @@ public class UserService {
     public String addUser(String name, Long id){
         System.out.println("添加用户 id = " + id);
         return String.format("name= %s ,id = %d", name, id);
+    }
+
+    @CacheEvict(cacheNames = "myCache",key = "'findUserById' + #id",allEntries = false,beforeInvocation = true)
+    public void deleteById(Long id){
+        System.out.println("执行删除操作");
     }
 }

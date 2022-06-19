@@ -179,4 +179,22 @@ public class UserServiceTest {
         myCache.getNativeCache().forEach((k,v)-> System.out.println("key = " + k + " value = " + v));
 
     }
+
+    @Test
+    public void deleteByIdTest(){
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
+        context.register(MyCacheConfig.class);
+        context.refresh();
+        UserService userService = context.getBean(UserService.class);
+        System.out.println(userService.findUserById(10L));
+        System.out.println(userService.findUserById(20L));
+
+        ConcurrentMapCacheManager cacheManager = context.getBean(ConcurrentMapCacheManager.class);
+        ConcurrentMapCache myCache = (ConcurrentMapCache)cacheManager.getCache("myCache");
+        myCache.getNativeCache().forEach((k,v)-> System.out.println("key = " + k + " value = " + v));
+
+        userService.deleteById(10L);
+        myCache.getNativeCache().forEach((k,v)-> System.out.println("key = " + k + " value = " + v));
+
+    }
 }

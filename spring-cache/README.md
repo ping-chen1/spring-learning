@@ -139,6 +139,32 @@ unless为true，方法返回结果不会丢到缓存中；unless为false，方�
 <td>allEntries</td>
 <td>是否清理 cacheNames 指定的缓存中的所有缓存信息，默认是false， 可以将一个cache想象为一个HashMap，当 allEntries 为true的时候，相当于 HashMap.clear()，当 allEntries 为false的时候，只会干掉key对应的数据，相当于HashMap.remove(key)</td>
 </tr>
+<tr>
+<td>beforeInvocation</td>
+<td>何事执行清除操作（方法执行前 or 方法执行成功之后）,true：@CacheEvict 标注的方法执行之前，执行清除操作,false：@CacheEvict 标注的方法执行成功之后，执行清除操作，当方法弹出异常的时候，不会执 行清除操作</td>
+</tr>
+<tr>
+<td rowspan="3">@Caching</td>
+<td rowspan="3">缓存注解组</td>
+<td rowspan="3">类上或方法</td>
+<td>cacheable</td>
+<td></td>
+</tr>
+<tr>
+<td>put</td>
+<td></td>
+</tr>
+<tr>
+<td>evict</td>
+<td></td>
+</tr>
+<tr>
+<td>@CacheConfig</td>
+<td>提取公共配置</td>
+<td>类</td>
+<td></td>
+<td></td>
+</tr>
 </table>
 key属性支持SpEL表达式；当我们没有指定该属性时，Spring将使用默认策略生成
 key（org.springframework.cache.interceptor.SimpleKeyGenerator），默认会方法参数创建key。
