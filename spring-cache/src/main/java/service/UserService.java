@@ -38,4 +38,22 @@ public class UserService {
         System.out.println("获取数据");
         return Arrays.asList("E1","E2","E3");
     }
+
+    @Cacheable(cacheNames = "myCache",key = "#root.args[0] + '-' + #root.args[1]")
+    public List<String> getAllListCacheKeyArgs(String str1,String str2){
+        System.out.println("获取数据");
+        return Arrays.asList("F1","F2","F3");
+    }
+
+    @Cacheable(cacheNames = "myCache",key = "#root.caches[0].name")
+    public List<String> getAllListCacheKeyCaches(){
+        System.out.println("获取数据");
+        return Arrays.asList("G1","G2","G3");
+    }
+
+    @Cacheable(cacheNames = "myCache",key = "#name + '-' + #age",condition = "#age>=20")
+    public String getAllListCacheCondition(String name,Integer age){
+        System.out.println("获取数据");
+        return String.format("name = %s,age = %d",name,age);
+    }
 }
