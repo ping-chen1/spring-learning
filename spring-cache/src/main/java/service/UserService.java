@@ -1,5 +1,6 @@
 package service;
 
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
@@ -55,5 +56,34 @@ public class UserService {
     public String getAllListCacheCondition(String name,Integer age){
         System.out.println("获取数据");
         return String.format("name = %s,age = %d",name,age);
+    }
+
+    @Cacheable(cacheNames = "myCache",key = "#name + '-' + #age",unless = "#age>20")
+    public String getAllListCacheUnless(String name,Integer age){
+        System.out.println("获取数据");
+        return String.format("name = %s,age = %d",name,age);
+    }
+    @Cacheable(cacheNames = "myCache",key = "#name + '-' + #age",sync = true)
+    public String getAllListCacheSync(String name,Integer age){
+        System.out.println("获取数据");
+        return String.format("name = %s,age = %d",name,age);
+    }
+
+    @Cacheable(cacheNames = "myCache",key = "#name + '-' + #age")
+    public String getAllListCacheKeyGenerator(String name, Integer age){
+        System.out.println("获取数据");
+        return String.format("name = %s,age = %d",name,age);
+    }
+
+    @Cacheable(cacheNames = "myCache",key = "'findUserById' + #id")
+    public String findUserById(Long id){
+        System.out.println("获取用户 id = " + id);
+        return String.format("id = %d",id);
+    }
+
+    @CachePut(cacheNames = "myCache",key = "'findUserById' + #id")
+    public String addUser(String name, Long id){
+        System.out.println("添加用户 id = " + id);
+        return String.format("name= %s ,id = %d", name, id);
     }
 }

@@ -129,4 +129,54 @@ public class UserServiceTest {
         myCache.getNativeCache().forEach((k,v)-> System.out.println("key = " + k + " value = " + v));
 
     }
+
+    @Test
+    public void getAllListCacheUnlessTest(){
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
+        context.register(MyCacheConfig.class);
+        context.refresh();
+        UserService userService = context.getBean(UserService.class);
+        System.out.println(userService.getAllListCacheUnless("张三", 15));
+        System.out.println(userService.getAllListCacheUnless("张三", 15));
+
+        System.out.println(userService.getAllListCacheUnless("李四",21));
+        System.out.println(userService.getAllListCacheUnless("李四",21));
+
+        ConcurrentMapCacheManager cacheManager = context.getBean(ConcurrentMapCacheManager.class);
+        ConcurrentMapCache myCache = (ConcurrentMapCache)cacheManager.getCache("myCache");
+        myCache.getNativeCache().forEach((k,v) -> System.out.println("key = " + k + " value = " + v));
+
+    }
+
+    @Test
+    public void getAllListCacheSyncTest(){
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
+        context.register(MyCacheConfig.class);
+        context.refresh();
+        UserService userService = context.getBean(UserService.class);
+        System.out.println(userService.getAllListCacheSync("张三", 15));
+        System.out.println(userService.getAllListCacheSync("张三",15));
+
+        ConcurrentMapCacheManager cacheManager = context.getBean(ConcurrentMapCacheManager.class);
+        ConcurrentMapCache myCache = (ConcurrentMapCache)cacheManager.getCache("myCache");
+        myCache.getNativeCache().forEach((k,v) -> System.out.println("key = " + k + " value = " + v));
+    }
+
+    @Test
+    public void addUserTest(){
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
+        context.register(MyCacheConfig.class);
+        context.refresh();
+        UserService userService = context.getBean(UserService.class);
+
+
+        System.out.println(userService.findUserById(10L));
+        ConcurrentMapCacheManager cacheManager = context.getBean(ConcurrentMapCacheManager.class);
+        ConcurrentMapCache myCache = (ConcurrentMapCache)cacheManager.getCache("myCache");
+        myCache.getNativeCache().forEach((k,v)-> System.out.println("key = " + k + " value = " + v));
+        System.out.println(userService.addUser("张三", 10L));
+        System.out.println(userService.findUserById(10L));
+        myCache.getNativeCache().forEach((k,v)-> System.out.println("key = " + k + " value = " + v));
+
+    }
 }

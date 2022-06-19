@@ -63,11 +63,46 @@ unless为true，方法返回结果不会丢到缓存中；unless为false，方�
 <td>是否同步 从相同key加载值 的方法</td>
 </tr>
 <tr>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
+<td rowspan="9">@CachePut</td>
+<td rowspan="9">类或方法</td>
+<td rowspan="9">将结果放入缓存</td>
+<td>value</td>
+<td>指定Cache名称</td>
+</tr>
+<tr>
+<td>cacheNames</td>
+<td>同value</td>
+</tr>
+<tr>
+<td>key</td>
+<td>自定义key</td>
+</tr>
+<tr>
+<td>condition</td>
+<td>控制缓存的使用条件，condition属性默认为空，表示将缓存所有的调用情形，其值是通过spel表达式来指定的，当为
+true时表示先尝试从缓存中获取；若缓存中不存在，则只需方法，并将方法返回值丢到缓存中；当为
+false的时候，不走缓存、直接执行方法、并且返回结果也不会丢到缓存中。</td>
+</tr>
+<tr>
+<td>unless</td>
+<td>控制是否需要将结果丢到缓存中，前提是condition为空或者为true的情况下，unless才有效，condition为false的时候，unless无效，
+unless为true，方法返回结果不会丢到缓存中；unless为false，方法返回结果会丢到缓存中。</td>
+</tr>
+<tr>
+<td>keyGenerator</td>
+<td>key生成策略</td>
+</tr>
+<tr>
+<td>cacheManager</td>
+<td>指定缓存控制器</td>
+</tr>
+<tr>
+<td>cacheResolver</td>
+<td>指定缓存解析器</td>
+</tr>
+<tr>
+<td>sync</td>
+<td>是否同步 从相同key加载值 的方法</td>
 </tr>
 </table>
 key属性支持SpEL表达式；当我们没有指定该属性时，Spring将使用默认策略生成
