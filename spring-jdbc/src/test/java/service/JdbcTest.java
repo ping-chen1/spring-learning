@@ -8,6 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.*;
+import org.springframework.jdbc.object.MappingSqlQueryWithParameters;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 
 import javax.xml.bind.SchemaOutputResolver;
@@ -263,11 +264,89 @@ public class JdbcTest {
         System.out.println(user);
     }
 
-    public void query无参(){
+    @Test
+    public void query无参PreparedStatementCreatorAndPreparedStatementSetterAndResultSetExtractor(){
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-//        jdbcTemplate.queryForObject()
+        PreparedStatementCreatorFactory creatorFactory = new PreparedStatementCreatorFactory("select * from t_user limit 1");
+        User query = jdbcTemplate.query(creatorFactory.newPreparedStatementCreator((List<?>) null), creatorFactory.newPreparedStatementSetter((List<?>) null), new ResultSetExtractor<User>() {
+            @Override
+            public User extractData(ResultSet rs) throws SQLException, DataAccessException {
+                List<User> users = new ArrayList<>();
+                while (rs.next()) {
+                    User user = new User();
+                    Class<User> userClass = User.class;
+                    Field[] declaredFields = userClass.getDeclaredFields();
+                    for (Field declaredField : declaredFields) {
+                        JdbcColum annotation = declaredField.getAnnotation(JdbcColum.class);
+                        if (null != annotation) {
+                            try {
+                                Class<?> type = declaredField.getType();
+                                String value = annotation.value();
+                                declaredField.setAccessible(Boolean.TRUE);
+                                if (type == Boolean.TYPE || type == Boolean.class) {
+                                    boolean aBoolean = rs.getBoolean(value);
+                                    declaredField.set(user, aBoolean);
+                                } else {
+                                    Object object = rs.getObject(value);
+                                    declaredField.set(user, type.cast(object));
+                                }
+                            } catch (IllegalAccessException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                    users.add(user);
+                }
+                return users.get(0);
+            }
+        });
+        System.out.println(query);
     }
 
+    /**
+     * BeanPropertyRowMapper 返回bean数据的list集合
+     */
+    @Test
+    public void queryBeanPropertyRowMapper(){
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+        List list = jdbcTemplate.query("select * from t_user", new BeanPropertyRowMapper<>(User.class));
+        System.out.println(list);
+    }
+
+    /**
+     * SingleColumnRowMapper 返回单列数据的list
+     */
+    @Test
+    public void querySingleColumnRowMapper(){
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+        List<String> name = jdbcTemplate.query("select name from t_user", new SingleColumnRowMapper<>(String.class));
+        System.out.println(name);
+    }
+
+    /**
+     * 使用的是SingleColumnRowMapper 所以返回的是单个的字段
+     */
+    @Test
+    public void queryForObjectForClass(){
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+        String s = jdbcTemplate.queryForObject("select name from t_user limit 1", String.class);
+        System.out.println(s);
+    }
+
+    /**
+     * 使用的是SingleColumnRowMapper 返回单个字段的list
+     */
+    @Test
+    public void queryForListForClass(){
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+        List<String> strings = jdbcTemplate.queryForList("select name from t_user", String.class);
+        System.out.println(strings);
+    }
+
+    public void query(){
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+        //jdbcTemplate.queryForObject("select * from t_user", new long[]{100L},new BeanPropertyRowMapper<>(User.class))
+    }
 
     private List<User> buildUsers(){
         User user = new User();
