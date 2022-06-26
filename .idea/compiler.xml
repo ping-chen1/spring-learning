@@ -9,6 +9,7 @@
         <module name="spring-jdbc" />
         <module name="spring-cache" />
         <module name="spring-cache-redis" />
+        <module name="spring-tx" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -16,6 +17,7 @@
       <module name="spring-cache-redis" target="8" />
       <module name="spring-jdbc" target="8" />
       <module name="spring-learning" target="8" />
+      <module name="spring-tx" target="8" />
     </bytecodeTargetLevel>
   </component>
 </project>

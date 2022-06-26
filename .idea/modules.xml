@@ -6,6 +6,7 @@
       <module fileurl="file://$PROJECT_DIR$/spring-cache-redis/spring-cache-redis.iml" filepath="$PROJECT_DIR$/spring-cache-redis/spring-cache-redis.iml" />
       <module fileurl="file://$PROJECT_DIR$/spring-jdbc/spring-jdbc.iml" filepath="$PROJECT_DIR$/spring-jdbc/spring-jdbc.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/spring-learning.iml" filepath="$PROJECT_DIR$/.idea/spring-learning.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-tx/spring-tx.iml" filepath="$PROJECT_DIR$/spring-tx/spring-tx.iml" />
     </modules>
   </component>
 </project>
