@@ -2,16 +2,12 @@ package service;
 
 import anno.JdbcColum;
 import com.alibaba.druid.pool.DruidDataSource;
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import model.User;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.*;
-import org.springframework.jdbc.object.MappingSqlQueryWithParameters;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
-
-import javax.xml.bind.SchemaOutputResolver;
 import java.lang.reflect.Field;
 import java.sql.*;
 import java.util.ArrayList;
