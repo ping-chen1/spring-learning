@@ -13,6 +13,8 @@
         <module>spring-cache-redis</module>
         <module>spring-jdbc</module>
         <module>spring-tx</module>
+        <module>spring-other</module>
+        <module>spring-annotation</module>
     </modules>
 
     <properties>

@@ -206,3 +206,9 @@ Spring还为我们提供了一个root对象可以用来生成key，通过该root
 <td>#root.caches[0].name</td>
 </tr>
 </table>
+
+ProxyCachingConfiguration
+
+CacheInterceptor
+
+BeanFactoryCacheOperationSourceAdvisor

@@ -66,5 +66,7 @@ public class PlatformTransactionManagerTest {
         }
     }
 
-    public void commit()
+    public void commit(){
+
+    }
 }
