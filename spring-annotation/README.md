@@ -61,3 +61,9 @@ Process finished with exit code 0
 5、处理@PostConstruct和@PreDestroy注解,通过org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor实现</br>
 6、注解@Autowired,通过org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor实现</br>
 7、注入其他组件,等等.
+##属性赋值
+1、@Value或者xml中的property标签</br>
+①、基本数值</br>
+②、spl表达式,#{}</br>
+③、${}取出配置文件中的值</br>
+2、@PropertySource,加载外部配置文件，取出配置文件中的k v, 保存在运行环境变量中</br>
