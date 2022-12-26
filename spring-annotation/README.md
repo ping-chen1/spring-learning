@@ -15,7 +15,7 @@
 1、使用@Bean注解中的initMethod方法,等同于xml中bean标签的init-method属性</br>
 2、通过bean实现InitializingBean接口</br>
 3、使用JSR250(java规范)@PostConstruct注解,bean创建完成并且完成属性赋值,来执行初始化方法</br>
-###初始化之后
+### 初始化之后
 实现org.springframework.beans.factory.config.BeanPostProcessor.postProcessAfterInitialization
 ### 3、销毁
 1、使用@Bean注解中的destroyMethod方法,等同于xml中bean标签的destroy-method属性</br>
@@ -50,7 +50,7 @@ CatLifeBean @Bean destroy...
 Process finished with exit code 0
 
 ```
-###Spring底层对BeanPostProcessor的使用
+### Spring底层对BeanPostProcessor的使用
 1、注解@Async,通过org.springframework.scheduling.annotation.AsyncAnnotationBeanPostProcessor处理异步方法</br>
 2、org.springframework.validation.beanvalidation.MethodValidationPostProcessor</br>
 3、注入IOC容器,bean实现ApplicationContextAware、EnvironmentAware、EmbeddedValueResolverAware、ResourceLoaderAware、ApplicationEventPublisherAware、MessageSourceAware接口,通过org.springframework.context.support.ApplicationContextAwareProcessor实现</br>
@@ -58,16 +58,16 @@ Process finished with exit code 0
 5、处理@PostConstruct和@PreDestroy注解,通过org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor实现</br>
 6、注解@Autowired,通过org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor实现</br>
 7、注入其他组件,等等.
-##属性赋值
+## 属性赋值
 1、@Value或者xml中的property标签</br>
 ①、基本数值</br>
 ②、spl表达式,#{}</br>
 ③、${}取出配置文件中的值,取出配置文件中的值,在环境变量中的值</br>
 2、@PropertySource,加载外部配置文件，取出配置文件中的k v, 保存在运行环境变量中</br>
-##自动装配
+## 自动装配
 Spring利用依赖注入(DI),完成对IOC容器中各个组件的依赖关系赋值.</br>
 
-###1、@Autowired
+### 1、@Autowired
 1、默认按照类型去容器中找对应的组件.</br>
 2、如果按照类型找到多个相同的组件,再将属性名作为组件的id去容器中查找.</br>
 3、可以使用@Qualifier(bean名字)明确指定使用哪个组件</br>
@@ -75,10 +75,10 @@ Spring利用依赖注入(DI),完成对IOC容器中各个组件的依赖关系赋
 5、@Primary:让spring进行自动装配的时候，默认使用首选的bean,也可以使用@Qualifier明确指定使用哪个bean.</br>
 spring注解,可以用在属性、方法、构造器、参数.</br>
 它们的区别在于加载顺序的不同</br>
-###2、@Resource
+### 2、@Resource
 JSR250(Java规范)
 默认按照名称自动装配,即@Resource(bean名称),没有支持@Primary和required = false的功能.</br>
-###3、@Inject
+### 3、@Inject
 JSR330(Java规范)
 需要加入依赖</br>
 ```
@@ -106,10 +106,10 @@ JSR330(Java规范)
 * BeanClassLoaderAware
 * ApplicationContextAware
 上述的xxxAware都是通过xxxAwareProcessor处理的.</br>
-##3、总结
+## 3、总结
 
-##4、Aop
-###步骤:
+## 4、Aop
+### 步骤:
 + 导入aop模块,spring-aspects
 + 定义业务类(MathCalculator),在业务逻辑运行时将日志打印(方法运行前、方法运行后、方法返回结果、方法出现异常等等)
 + 定义日志切面类(LogAspects),切面类里面的方法需要动态感知MathCalculator中方法运行到哪
@@ -123,7 +123,7 @@ JSR330(Java规范)
 + 将目标类和切面类都加入到容器中
 + 通过注解@Aspect告诉spring哪个类时切面类
 + 配置类添加@EnableAspectJAutoProxy，开启基于注解的aop模式
-###源码解析
+### 源码解析
 1. 配置类添加@EnableAspectJAutoProxy开启AOP自动注解功能
 2. @EnableAspectJAutoProxy会给容器注册一个AnnotationAwareAspectJAutoProxyCreator后置通知组件
 3. 容器创建流程
@@ -140,5 +140,5 @@ JSR330(Java规范)
       3. 效果
          1. 正常执行:前置通知-->目标方法-->后置通知-->返回通知
          2. 异常执行:前置通知-->目标方法-->后置通知-->异常通知
-##5、声明式事务
+## 5、声明式事务
 
