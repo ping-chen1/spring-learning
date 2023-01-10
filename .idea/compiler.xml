@@ -6,12 +6,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="spring-other" />
-        <module name="spring-annotation" />
-        <module name="spring-jdbc" />
-        <module name="spring-cache" />
-        <module name="spring-cache-redis" />
-        <module name="spring-tx" />
+        <module name="spring-security" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -21,6 +16,8 @@
       <module name="spring-jdbc" target="8" />
       <module name="spring-learning" target="8" />
       <module name="spring-other" target="8" />
+      <module name="spring-security" target="8" />
+      <module name="spring-session" target="8" />
       <module name="spring-tx" target="8" />
       <module name="spring-杂谈" target="8" />
     </bytecodeTargetLevel>

@@ -8,11 +8,19 @@
     </option>
     <option name="ignoredFiles">
       <set>
+        <option value="$PROJECT_DIR$/spring-annotation/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-cache-redis/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-cache/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-jdbc/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-other/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-security/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-session/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-tx/pom.xml" />
         <option value="$PROJECT_DIR$/spring-杂谈/pom.xml" />
       </set>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
 </project>
