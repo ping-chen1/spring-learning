@@ -17,6 +17,7 @@
         <module>spring-annotation</module>
         <module>spring-session</module>
         <module>spring-security</module>
+        <module>spring-flink</module>
     </modules>
 
     <properties>

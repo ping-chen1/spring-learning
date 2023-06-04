@@ -23,10 +23,17 @@ public class JdbcTest {
     @Before
     public void init() {
         dataSource = new DruidDataSource();
-        dataSource.setUrl("jdbc:mysql://192.168.44.163:3306/test?useUnicode=true&characterEncoding=UTF-8");
-        dataSource.setUsername("vmuser");
-        dataSource.setPassword("cp@1234567890");
+        dataSource.setUrl("jdbc:mysql://toms-mycat-sit.cloud.bz:28066/toms_st?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true");
+        dataSource.setUsername("toms_st");
+        dataSource.setPassword("toms_st");
     }
+
+
+    @Test
+    public void pfsTest(){
+
+    }
+
 
     @Test
     public void insertNotArgs() {
@@ -34,6 +41,7 @@ public class JdbcTest {
         int update = jdbcTemplate.update("INSERT INTO t_user (name, age, email, address, telephone, create_time, update_time, password, is_delete) VALUES ('张三', '52', '1234567789@qq.com', '上海市宝山区', '13100000000', now(), now(), '123456', '0')");
         System.out.println(update);
     }
+
 
     @Test
     public void insertArgs1() {
@@ -364,5 +372,10 @@ public class JdbcTest {
         user1.setCreateTime(new Date());
         user1.setUpdateTime(new Date());
        return Arrays.asList(user,user1);
+    }
+
+    @Test
+    public void test(){
+
     }
 }

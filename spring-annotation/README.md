@@ -142,3 +142,28 @@ JSR330(Java规范)
          2. 异常执行:前置通知-->目标方法-->后置通知-->异常通知
 ## 5、声明式事务
 
+## 6、注解
+| 注解名                     | 作用主体 | 描述                                    |
+|-------------------------|------|---------------------------------------|
+| @Bean                   | 方法   | 该方法产生的bean由spring容器管理,类似于Xml中定义的bean标签|
+| @ComponentScan          |||
+| @ComponentScans         |||
+| @Conditional            |||
+| @Configuration          |||
+| @DependsOn              |||
+| @Description            |||
+| @EnableAspectJAutoProxy |||
+| @EnableLoadTimeWeaving  |||
+| @EnableMBeanExport      |||
+| @Import                 |||
+| @ImportResource         |||
+| @Lazy                   |||
+| @Primary                |||
+| @Profile                |||
+| @PropertySource         |||
+| @PropertySources        |||
+| @Role                   |||
+| @Scope                       |||
+||||
+||||
+||||
